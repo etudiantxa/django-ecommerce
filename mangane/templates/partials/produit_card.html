@@ -1,0 +1,17 @@
+
+
+<div class="col-md-3">
+    <div class="card mb-3">
+        <a href="{% url 'product-details' product.slug %}">
+            <img src="{{product.image.url}}" height="220px" class="card-img-top" alt="nom du produit">
+        </a>
+      <div class="card-body">
+        <h5 class="card-title">nom: {{product.name}}</h5>
+        <p class="card-text">{{product.description}}</p>
+        <p class="card-text">{{product.price | floatformat}} CFA</p>
+        <a href="{% url 'product-details' product.slug %}" class="btn btn-secondary">Voir le Detail</a>
+      </div>
+    </div>
+  </div>
+
+  

@@ -1,0 +1,42 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<section>
+  <h1 class="text-center pb-4"> <span class="badge bg-secondary"> Achetez Le Meilleur </span></h1>
+
+  <div class="row">
+    <div class="col-md-8 mx-auto mb-4">
+      <form class="d-flex">
+        <input class="form-control me-2 text-center" type="search" placeholder="Veuillez chercher ici votre produits" aria-label="Search" name="q">
+        <button class="btn btn-outline-success" type="submit">Rechercher</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+
+<div class="col-md-3">
+  <h2><span class="badge bg-secondary">Listes Des Cathegories</span></h2>
+  <ul class="list-group">
+    
+    {% for cathegory in cathegories %}
+    <li class="list-group-item">
+      <a href="#"> {{cathegory.name}} </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+    {% if products %}
+    {% for product  in products %}
+      
+    {% include "partials/produit_card.html" %}
+    {% endfor %}
+    {% else %}
+    <p class="text-center">pas de produits</p>
+    
+    {% endif %}
+    
+    
+  </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<div class="container  bg-warning">
+    <h1 class="text-center pb-4 text-primary"><span class="badge bg-secondary"> Les Details De {{product.name}} </span></h1>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{product.image.url}}" height="220px" class="img-fluid" alt="nom du produit">
+        </div>
+        <div class="col-md-6 bg-warning text-center  ">
+           <h2 class="p-5 text-primary"><span class="badge bg-secondary">Nom: {{product.name}}
+           <br>
+            Prix: {{product.price | floatformat}} fcfa
+            <br>
+        description: {{product.description}}</span>
+            </h2>
+            
+            <form action="{% url 'cart_add' product.id %}" method="post">
+                {% csrf_token %}
+                {{cart_product_form}}
+                <button type="submit" class="btn btn-secondary"><span class="badge ">AJOUTER AU PANIER</span></button>
+            </form>
+        </div>
+    </div>
+</div>  
+
+{% endblock content %}

@@ -1,0 +1,9 @@
+
+
+
+#  paydunya
+PAYDUNYA_ACCESS_TOKENS = {
+  'PAYDUNYA-MASTER-KEY': "",
+  'PAYDUNYA-PRIVATE-KEY': "",
+  'PAYDUNYA-TOKEN': ""
+}

@@ -1,0 +1,36 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<div class="row ">
+  <div class="col-md-8 mx-auto">
+    <h1 class="text-center"> <span class="badge bg-secondary">VALIDER VOTRE COMMANDE</span></h1>
+    <ul>
+      {% for item in cart %}
+        
+      
+      <li>
+        {{item.product.name}}*{{item.quantity}} : {{item.total_price | floatformat}} CFA
+      </li>
+      {% endfor %}
+    </ul>
+    <ul><li>
+      <p>total à payer: {{ cart.get_total_price | floatformat}} CFA</p>
+    </li></ul>
+    
+    <form action="" class="border border-solid mt-2 p-5 bg-info text-uppercase" method="post">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="form-group mt-2">
+        <label for="{{fiel.id_label}}" class="form-label">{{field.label}}:</label>
+        {{field}}
+      </div>
+        
+      {% endfor %}
+      <div class="form-group">
+      <button class="btn btn-secondary mt-2 p-3" type="submit"><span class="badge bg-secondary">Valider La Commande</span></button>
+    </div>
+    </form>
+  </div>
+</div>
+  
+{% endblock  %}

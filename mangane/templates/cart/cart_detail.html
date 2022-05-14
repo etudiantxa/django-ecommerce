@@ -1,0 +1,60 @@
+{% extends "_base.html" %}
+
+
+{% block content %}
+<h1> <span class="badge bg-secondary">VOTRE PANIER</span></h1>
+<div class="row">
+    
+    {% if cart %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Produit</th>
+                <th>Quantity</th>
+                <th>Retire</th>
+                <th>Prix Unitaire</th>
+                <th>Prix Total</th>
+            </tr>
+        </thead>
+        <tbody class="bg-secondary">
+        {% for item in cart %}
+        {% with product=item.product %}  
+        
+        <tr>
+            <td><img src="{{ product.image.url }}" alt="{{produc.name}}" height="50px" width="100px" class="img-fluid"></td>
+            <td class="text-white">{{product.name}}</td>
+            <td>
+                <form action=" {% url 'cart_add' product.id %} "method="post">
+                {% csrf_token %}
+                {{item.update_quantity_form.quantity}}
+                {{item.update_quantity_form.override}}
+                <input type="submit" value="Mettre à Jour">
+                </form>
+            </td>
+            <td>
+                <form action="{% url 'cart_remove' product.id %}"  method="post">
+                    {% csrf_token %}
+                    <input type="submit" class="" value="Supprimer du Panier">
+                </form>
+            </td>
+            <td class="text-white">{{item.price | floatformat}} cfa</td>
+            <td class="text-white">{{item.total_price | floatformat}} cfa</td>
+        </tr>
+        {% endwith %}
+        {% endfor %}
+
+                
+        </tbody>
+    </table>
+    <a href="{% url 'order_create' %}" class="btn btn-secondary"><h1> <span class="badge bg-secondary">VALIDER VOTRE PANIER</span></h1></a>
+    {% else %}
+    <div class="text-center">
+        <h1> <span class="badge bg-secondary">VOTRE PANIER EST VIDE</span></h1>
+        <a href="/" class="btn btn-secondary ">Continuez Votre Achat</a>
+    </div> 
+    {% endif %}
+        
+    
+</div>  
+{% endblock content %}
